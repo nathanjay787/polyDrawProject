@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func shapeChosen(_ sender: UISegmentedControl) {
+        self.drawingView.shapeType = sender.selectedSegmentIndex
+    }
+    
+    @IBOutlet weak var drawingView: DrawingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
