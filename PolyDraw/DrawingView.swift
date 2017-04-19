@@ -9,10 +9,12 @@
 import UIKit
 
 class DrawingView: UIView {
-
+    
     var shapeType = 0
     var theShapes = [Shape]()
-    
+    var initialPoint: CGPoint!
+    var isThereAPartialShape : Bool = false
+    var thePartialShape : Shape!
     
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -30,29 +32,48 @@ class DrawingView: UIView {
                 aShape.draw(theContext)
             }
             
+            if self.isThereAPartialShape {
+                self.thePartialShape.draw(theContext)
+            }
+            
             theContext.strokePath()
         }
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first! as UITouch
-        let location = touch.location(in: self)
+        self.initialPoint = touch.location(in: self)
+        self.isThereAPartialShape = true
+
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first! as UITouch
+        let newPoint = touch.location(in: self)
         
-        if shapeType == 0 {
-            self.theShapes.append(Rect(X:Double(location.x),
-                                       Y:Double(location.y),
-                                       theHeight: 20,
-                                       theWidth:20))
-        } else {
-            self.theShapes.append(Oval(X:Double(location.x),
-                                       Y:Double(location.y),
-                                       theHeight: 20,
-                                       theWidth:20))
+        let topLeftPoint = CGPoint(x: self.initialPoint.x < newPoint.x ? self.initialPoint.x : newPoint.x,
+                                   y: self.initialPoint.y < newPoint.y ? self.initialPoint.y : newPoint.y)
+        
+        if self.isThereAPartialShape {
+            if shapeType == 0 {
+                self.thePartialShape = Rect(X: Double(topLeftPoint.x),
+                                            Y: Double(topLeftPoint.y),
+                                            theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
+                                            theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
+            } else {
+                self.thePartialShape = Oval(X: Double(topLeftPoint.x),
+                                            Y: Double(topLeftPoint.y),
+                                            theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
+                                            theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
+            }
         }
-        
         self.setNeedsDisplay()
     }
- 
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.theShapes.append(self.thePartialShape)
+        self.isThereAPartialShape = false
+    }
 }
 
 
