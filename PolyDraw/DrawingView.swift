@@ -67,11 +67,13 @@ class DrawingView: UIView {
                                             Y: Double(topLeftPoint.y),
                                             theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
                                             theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
-                default:
+                case 2:
                 self.thePartialShape = Line(X: Double(topLeftPoint.x),//MUST BE FIXED: CHANGE TO LINE STUFF
                                             Y: Double(topLeftPoint.y),
                                             theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
                                             theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
+                default:
+                break
             }
         }
         self.setNeedsDisplay()
