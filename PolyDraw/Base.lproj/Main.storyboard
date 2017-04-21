@@ -33,11 +33,29 @@
                                             <segments>
                                                 <segment title="Rect"/>
                                                 <segment title="Oval"/>
+                                                <segment title="Line"/>
                                             </segments>
                                             <connections>
                                                 <action selector="shapeChosen:" destination="BYZ-38-t0r" eventType="valueChanged" id="3gj-7N-dUs"/>
                                             </connections>
                                         </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="4u6-nL-9ji">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zbq-nv-baq">
+                                            <rect key="frame" x="147" y="7" width="54" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Options"/>
+                                        </button>
+                                        <connections>
+                                            <segue destination="3DQ-ES-pNa" kind="presentation" identifier="OptionsSegue" id="i6c-vB-g64"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="q9H-1O-5Ej">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WtM-fb-kdx">
+                                            <rect key="frame" x="211" y="7" width="38" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Undo"/>
+                                        </button>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -61,6 +79,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="35.532233883058474"/>
+        </scene>
+        <!--Options View Controller-->
+        <scene sceneID="mmu-Nb-LTQ">
+            <objects>
+                <viewController id="3DQ-ES-pNa" customClass="OptionsViewController" customModule="PolyDraw" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nns-Vn-cF6"/>
+                        <viewControllerLayoutGuide type="bottom" id="I3v-La-a17"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cnd-sU-CdF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7F-rV-PPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="36"/>
         </scene>
     </scenes>
 </document>

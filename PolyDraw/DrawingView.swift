@@ -54,14 +54,21 @@ class DrawingView: UIView {
         let topLeftPoint = CGPoint(x: self.initialPoint.x < newPoint.x ? self.initialPoint.x : newPoint.x,
                                    y: self.initialPoint.y < newPoint.y ? self.initialPoint.y : newPoint.y)
         
-        if self.isThereAPartialShape {
-            if shapeType == 0 {
+        if self.isThereAPartialShape {//changed from a single if-else to switch statement
+            switch (shapeType){
+                case 0:
                 self.thePartialShape = Rect(X: Double(topLeftPoint.x),
                                             Y: Double(topLeftPoint.y),
                                             theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
                                             theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
-            } else {
+            //} else {
+                case 1:
                 self.thePartialShape = Oval(X: Double(topLeftPoint.x),
+                                            Y: Double(topLeftPoint.y),
+                                            theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
+                                            theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
+                default:
+                self.thePartialShape = Line(X: Double(topLeftPoint.x),//MUST BE FIXED: CHANGE TO LINE STUFF
                                             Y: Double(topLeftPoint.y),
                                             theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
                                             theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
