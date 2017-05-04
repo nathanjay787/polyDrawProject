@@ -26,5 +26,6 @@ class Line:Shape {
         //theContext.addLine(to: rect)
         //theContext.addPath(path)
         //theContext.strokePath()
+        //key functions: moveTo, lineTo
     }
 }
