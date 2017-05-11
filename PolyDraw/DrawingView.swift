@@ -24,7 +24,8 @@ class DrawingView: UIView {
         if let theContext = possibleContext {
             theContext.setLineWidth(1.0)
             let colorSpace = CGColorSpaceCreateDeviceRGB()
-            let components:[CGFloat] = [0.0, 0.0, 1.0, 1.0]
+            let components:[CGFloat] = [0.0, 0.0, 0.0, 1.0, 1.0]
+            //let components:[CGFloat] = [0.0]
             let color = CGColor(colorSpace: colorSpace, components: components)
             theContext.setStrokeColor(color!)
             
@@ -68,10 +69,10 @@ class DrawingView: UIView {
                                             theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
                                             theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
                 case 2:
-                self.thePartialShape = Line(X: Double(topLeftPoint.x),//MUST BE FIXED: CHANGE TO LINE STUFF
-                                            Y: Double(topLeftPoint.y),
-                                            theHeight: abs(Double(self.initialPoint.y-newPoint.y)),
-                                            theWidth: abs(Double(self.initialPoint.x-newPoint.x)))
+                self.thePartialShape = Line(X: Double(self.initialPoint.x),//MUST BE FIXED: CHANGE TO LINE STUFF
+                                            Y: Double(self.initialPoint.y),
+                                            theHeight: Double(newPoint.y),
+                                            theWidth: Double(newPoint.x))
                 default:
                 break
             }

@@ -19,13 +19,9 @@ class Line:Shape {
     }
     
     override func draw(_ theContext: CGContext) {
-        //let rect = CGRect(x: self.X, y: self.Y, width: self.theWidth, height: self.theHeight)
-        let point = CGPoint(x: X, y: Y)
-        theContext.addLine(to: point)
-        //let path = CGPath(rect: rect, transform: nil)
-        //theContext.addLine(to: rect)
-        //theContext.addPath(path)
-        //theContext.strokePath()
-        //key functions: moveTo, lineTo
+        let origin = CGPoint(x: self.X, y: self.Y)
+        let destination = CGPoint(x: self.theWidth, y: self.theHeight)
+        theContext.move(to: origin)
+        theContext.addLine(to: destination)
     }
 }
